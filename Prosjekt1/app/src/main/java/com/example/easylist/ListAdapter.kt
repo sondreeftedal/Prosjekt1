@@ -32,7 +32,7 @@ class ListAdapter(private val listItem: MutableList<ListItem>, private val onLis
 
     override fun getItemCount(): Int = listItem.size
 
-    public fun updateCollection(newList:List<ListItem>){
+    fun updateCollection(newList:List<ListItem>){
         listItem.clear()
         listItem.addAll(newList)
         notifyDataSetChanged()
