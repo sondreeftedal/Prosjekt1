@@ -9,21 +9,40 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.easylist.databinding.ListItemBinding
+import com.example.easylist.ListItem
 
-class ListAdapter(private val listItem: MutableList<ListItem>, private val onListClicked:(ListItem) -> Unit) : RecyclerView.Adapter<ListAdapter.ViewHolder>(){
+class ListAdapter(private var listItem: List<ListItem>, private val onListClicked:(ListItem) -> Unit) : RecyclerView.Adapter<ListAdapter.ViewHolder>(){
+
 
 
     class ViewHolder(val binding: ListItemBinding):RecyclerView.ViewHolder(binding.root){
-        fun bind(listitem: ListItem){
+        fun bind(listitem: ListItem, onListClicked: (ListItem) -> Unit){
+            var itemPosition:Int = 0
             binding.ItemProgress.progress = listitem.progress
             binding.ItemText.text = listitem.text
 
+            binding.itemCard.setOnClickListener {
+                onListClicked(listitem)
+            }
+
+            binding.deleteButton.setOnClickListener{
+                itemPosition = adapterPosition
+                if(itemPosition != RecyclerView.NO_POSITION){
+                    ListManager.instance.deleteItem(itemPosition)
+
+                }
+            }
         }
-    }
+
+        }
+
+
+
+
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = listItem[position]
-        holder.bind(currentItem)
+        holder.bind(currentItem, onListClicked)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListAdapter.ViewHolder {
@@ -32,10 +51,9 @@ class ListAdapter(private val listItem: MutableList<ListItem>, private val onLis
 
     override fun getItemCount(): Int = listItem.size
 
-    fun updateCollection(newList:List<ListItem>){
-        listItem.clear()
-        listItem.addAll(newList)
+    public fun updateCollection(newList:MutableList<ListItem>){
+        listItem = newList
         notifyDataSetChanged()
-
     }
+
     }

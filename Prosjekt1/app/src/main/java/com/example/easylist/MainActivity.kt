@@ -1,37 +1,29 @@
 package com.example.easylist
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageButton
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.easylist.databinding.ActivityMainBinding
+import kotlinx.android.synthetic.main.activity_main.*
+
+const val EXTRA_LIST_INFO: String = "com.example.easylist.listitem.info"
+const val REQUEST_LIST_DETAILS:Int = 564587
+
+class ListHolder{
+        companion object{
+            var PickedListItem:ListItem? = null
+        }
+    }
 
 
+class MainActivity : AppCompatActivity(), AddNewList.OnFragmentAddNewListListener {
 
-    class MainActivity : AppCompatActivity(), AddNewList.OnFragmentAddNewListListener {
-        lateinit var addNewList: AddNewList
-        lateinit var addButton: ImageButton
         private lateinit var binding: ActivityMainBinding
-        private lateinit var listAdapter: ListAdapter
-        var newListName:String = ""
-        var newListProgress:Int = 0
 
-
-        private var listItem:MutableList<ListItem> = mutableListOf(
-            ListItem(30,"Handleliste"),
-            ListItem(20, "Huskeliste"),
-            ListItem(0, "BucketList"),
-            ListItem(90, "Obliger"),
-            ListItem(70, "Sparemål"),
-            ListItem(10, "Jobbing"),
-            ListItem(25, "Lol")
-
-        )
+        lateinit var addButton: ImageButton
 
         override fun getListName(listname: String) {
             addList(listname)
@@ -42,8 +34,13 @@ import com.example.easylist.databinding.ActivityMainBinding
             binding = ActivityMainBinding.inflate(layoutInflater)
             setContentView(binding.root)
             binding.ListeRecyclerView.layoutManager = LinearLayoutManager(this)
+            binding.ListeRecyclerView.adapter = ListAdapter(emptyList<ListItem>(), this::onListClicked)
 
+            ListManager.instance.onList = {
+                (binding.ListeRecyclerView.adapter as ListAdapter).updateCollection(it as MutableList<ListItem>)
+            }
 
+            ListManager.instance.load()
 
             addButton = findViewById(R.id.addNewListButton)
 
@@ -55,12 +52,24 @@ import com.example.easylist.databinding.ActivityMainBinding
 
             }
 
+
+
         fun addList(listname: String){
-            listItem.add((listItem.size), ListItem(0,"$listname"))
+            val listItem = ListItem(0, listname)
+            ListManager.instance.addList(listItem)
 
         }
         private fun onListClicked(listItem: ListItem):Unit{
-            print("ClickClick")
+            ListHolder.PickedListItem = listItem
+            val intent = Intent(this, ListItemDetails::class.java).apply {
+                putExtra(EXTRA_LIST_INFO, listItem)
+            }
+            startActivity(intent)
+
         }
+       fun removeItem(index:Int){
+           val index = index
+           ListManager.instance.deleteItem(index)
+       }
 
     }
