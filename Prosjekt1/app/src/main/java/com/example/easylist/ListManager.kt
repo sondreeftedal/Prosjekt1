@@ -4,9 +4,10 @@ import android.content.Context
 import com.example.easylist.ListItem
 
 class ListManager {
+
     private lateinit var listCollection: MutableList<ListItem>
 
-    var onList: ((List<ListItem>) -> Unit)? = null
+    var onList: ((MutableList<ListItem>) -> Unit)? = null
     var onListUpdate: ((ListItem) -> Unit)? = null
 
 
@@ -18,8 +19,8 @@ class ListManager {
     }
     fun load(){
         listCollection = mutableListOf(
-            ListItem(50,"Test"),
-            ListItem(70,"Test2")
+            ListItem(50,"Test" ,emptyList()),
+            ListItem(70,"Test2" ,emptyList())
         )
         onList?.invoke(listCollection)
     }

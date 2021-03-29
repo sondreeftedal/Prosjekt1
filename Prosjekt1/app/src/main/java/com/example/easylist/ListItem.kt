@@ -7,4 +7,4 @@ import android.widget.ProgressBar
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class ListItem(val progress:Int, val text:String):Parcelable
+data class ListItem(val progress:Int, val text:String, val tasks:List<ListItemTask>):Parcelable

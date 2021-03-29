@@ -16,13 +16,12 @@ var listName:String = ""
 var listProgress:Int=0
 
 
-lateinit var addListName: EditText
-lateinit var submitForm: Button
-lateinit var cancelButton: Button
+
 class AddNewList : DialogFragment() {
     private var listNameListener : OnFragmentAddNewListListener ?= null
-
-
+    lateinit var addListName: EditText
+    lateinit var submitForm: Button
+    lateinit var cancelButton: Button
 
 
 

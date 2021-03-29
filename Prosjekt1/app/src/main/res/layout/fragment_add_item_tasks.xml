@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="400dp"
     android:layout_height="300dp"
-    tools:context=".AddNewList"
-    >
+    tools:context=".AddItemTasks">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="400dp"
@@ -14,25 +13,25 @@
         >
 
         <TextView
-            android:id="@+id/addNewListTextHeader"
+            android:id="@+id/addNewTaskTextHeader"
             android:layout_width="wrap_content"
             android:layout_marginRight="20dp"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@id/addNewListEditText"
+            app:layout_constraintBottom_toTopOf="@id/addNewTaskEditText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="Lag en ny liste"
+            android:text="Legg til et gjøremål"
             android:textSize="50dp"
             android:textAlignment="center"
             />
 
 
         <EditText
-            android:id="@+id/addNewListEditText"
+            android:id="@+id/addNewTaskEditText"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:hint="Skriv inn navn på listen"
+            android:hint="Skriv inn navn på gjøremålet"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -41,20 +40,20 @@
             />
 
         <Button
-            android:id="@+id/addNewListEnterButton"
+            android:id="@+id/addNewTaskEnterButton"
             android:layout_width="100dp"
             android:layout_height="60dp"
             android:backgroundTint="#339933"
             android:text="Fullfør"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/addNewListCancelButton"
+            app:layout_constraintEnd_toEndOf="@+id/addNewTaskCancelButton"
             app:layout_constraintHorizontal_bias="0.303"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/addNewListEditText"
+            app:layout_constraintTop_toBottomOf="@+id/addNewTaskEditText"
             app:layout_constraintVertical_bias="0.505" />
 
         <Button
-            android:id="@+id/addNewListCancelButton"
+            android:id="@+id/addNewTaskCancelButton"
             android:layout_width="100dp"
             android:layout_height="60dp"
             android:backgroundTint="#ff0000"
@@ -64,7 +63,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.713"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/addNewListEditText"
+            app:layout_constraintTop_toBottomOf="@+id/addNewTaskEditText"
             app:layout_constraintVertical_bias="0.505" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

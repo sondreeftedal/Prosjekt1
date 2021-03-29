@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity(), AddNewList.OnFragmentAddNewListListene
 
 
         fun addList(listname: String){
-            val listItem = ListItem(0, listname)
+            val listItem = ListItem(0, listname ,emptyList())
             ListManager.instance.addList(listItem)
 
         }
