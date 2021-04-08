@@ -3,18 +3,19 @@ package com.example.easylist
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.ImageButton
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.easylist.Lists.ListItem
+import com.example.easylist.Lists.ListAdapter
+import com.example.easylist.Lists.ListManager
 import com.example.easylist.databinding.ActivityMainBinding
-import kotlinx.android.synthetic.main.activity_main.*
 
 const val EXTRA_LIST_INFO: String = "com.example.easylist.listitem.info"
 const val REQUEST_LIST_DETAILS:Int = 564587
 
 class ListHolder{
         companion object{
-            var PickedListItem:ListItem? = null
+            var PickedListItem: ListItem? = null
         }
     }
 
@@ -55,8 +56,10 @@ class MainActivity : AppCompatActivity(), AddNewList.OnFragmentAddNewListListene
 
 
         fun addList(listname: String){
-            val listItem = ListItem(0, listname ,emptyList())
+            val id = 1
+            val listItem = ListItem(id,0, listname , mutableListOf())
             ListManager.instance.addList(listItem)
+            id + 1
 
         }
         private fun onListClicked(listItem: ListItem):Unit{
@@ -65,8 +68,9 @@ class MainActivity : AppCompatActivity(), AddNewList.OnFragmentAddNewListListene
                 putExtra(EXTRA_LIST_INFO, listItem)
             }
             startActivity(intent)
-
         }
+
+
        fun removeItem(index:Int){
            val index = index
            ListManager.instance.deleteItem(index)

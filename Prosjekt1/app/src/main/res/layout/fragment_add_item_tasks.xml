@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="400dp"
     android:layout_height="300dp"
-    tools:context=".AddItemTasks">
+    tools:context=".ListItems.AddItemTasks">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="400dp"

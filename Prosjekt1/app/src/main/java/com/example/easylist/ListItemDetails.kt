@@ -5,8 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.easylist.databinding.ActivityListItemDetailsBinding
-import com.example.easylist.ListItemTask
-import com.example.easylist.ListTaskAdapter
+import com.example.easylist.ListItems.AddItemTasks
+import com.example.easylist.ListItems.ListItemTask
+import com.example.easylist.ListItems.ListTaskAdapter
+import com.example.easylist.ListItems.ListTaskManager
+import com.example.easylist.Lists.ListItem
 import com.google.android.material.dialog.MaterialDialogs
 
 
@@ -52,8 +55,11 @@ class ListItemDetails : AppCompatActivity(), AddItemTasks.OnFragmentAddItemTasks
     }
 
     override fun getTaskName(taskname: String) {
-        val taskItem = ListItemTask(taskname, false)
-        ListTaskManager.Taskinstance.addTask(taskItem)
+
+    }
+
+    companion object{
+        val listitemdetails = ListItemDetails
     }
 
 

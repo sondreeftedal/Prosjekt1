@@ -1,11 +1,11 @@
-package com.example.easylist
+package com.example.easylist.ListItems
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.Adapter
+import com.example.easylist.AddNewList
+import com.example.easylist.ListItemDetails
 import com.example.easylist.databinding.ListItemTaskBinding
-import kotlinx.android.synthetic.main.activity_list_item_details.view.*
 
 public class ListTaskAdapter(private var listItemTasks: MutableList<ListItemTask>): RecyclerView.Adapter<ListTaskAdapter.ViewHolder>() {
 
@@ -26,7 +26,11 @@ public class ListTaskAdapter(private var listItemTasks: MutableList<ListItemTask
                 }
 
 
+
+
         }
+
+
     }}
 
     override fun getItemCount(): Int = listItemTasks.size
@@ -44,6 +48,13 @@ public class ListTaskAdapter(private var listItemTasks: MutableList<ListItemTask
         listItemTasks = newTasks
         notifyDataSetChanged()
     }
+    fun addTaskToList() {
+        var taskName = AddNewList.newInstance().getListName()
+
+    }
+
+
+
 
 
 

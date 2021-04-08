@@ -1,15 +1,9 @@
-package com.example.easylist
+package com.example.easylist.Lists
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.ProgressBar
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.easylist.databinding.ListItemBinding
-import com.example.easylist.ListItem
 
 class ListAdapter(private var listItem: List<ListItem>, private val onListClicked:(ListItem) -> Unit) : RecyclerView.Adapter<ListAdapter.ViewHolder>(){
 
@@ -20,6 +14,7 @@ class ListAdapter(private var listItem: List<ListItem>, private val onListClicke
             var itemPosition:Int = 0
             binding.ItemProgress.progress = listitem.progress
             binding.ItemText.text = listitem.text
+
 
             binding.itemCard.setOnClickListener {
                 onListClicked(listitem)
@@ -32,6 +27,7 @@ class ListAdapter(private var listItem: List<ListItem>, private val onListClicke
 
                 }
             }
+
         }
 
         }
@@ -45,7 +41,7 @@ class ListAdapter(private var listItem: List<ListItem>, private val onListClicke
         holder.bind(currentItem, onListClicked)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(ListItemBinding.inflate(LayoutInflater.from(parent.context), parent,false))
     }
 

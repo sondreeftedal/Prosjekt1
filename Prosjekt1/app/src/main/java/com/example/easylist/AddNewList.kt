@@ -10,10 +10,17 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.DialogFragment
+import com.example.easylist.ListItems.ListItemTask
+import com.example.easylist.ListItems.ListTaskAdapter
+import com.example.easylist.ListItems.ListTaskManager
+import com.example.easylist.Lists.ListAdapter
+import com.example.easylist.Lists.ListItem
+import com.example.easylist.Lists.ListManager
 import java.lang.RuntimeException
 
 var listName:String = ""
 var listProgress:Int=0
+var index = 0
 
 
 
@@ -64,21 +71,23 @@ class AddNewList : DialogFragment() {
             dismiss()
         }
 
+        submitForm.setOnClickListener {
+            listName = addListName.text.toString()
+            listNameListener?.getListName(listName)
 
+            dismiss()
+        }
 
-        submitForm.setOnClickListener{
-        listName = addListName.text.toString()
-        listNameListener?.getListName(listName)
-
-        dismiss()
-
-    }
 
 }
+    fun getListName() {
+
+    }
 
     interface OnFragmentAddNewListListener {
         fun getListName(listname:String)
     }
+
 
     companion object {
         @JvmStatic

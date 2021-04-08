@@ -1,12 +1,11 @@
-package com.example.easylist
+package com.example.easylist.Lists
 
-import android.content.Context
-import com.example.easylist.ListItem
-
+import com.example.easylist.ListItems.ListItemTask
+var listCollection = mutableListOf<ListItem>()
 class ListManager {
 
-    private lateinit var listCollection: MutableList<ListItem>
 
+    val listCollection = mutableListOf<ListItem>()
     var onList: ((MutableList<ListItem>) -> Unit)? = null
     var onListUpdate: ((ListItem) -> Unit)? = null
 
@@ -18,9 +17,8 @@ class ListManager {
         onList?.invoke(listCollection)
     }
     fun load(){
-        listCollection = mutableListOf(
-            ListItem(50,"Test" ,emptyList()),
-            ListItem(70,"Test2" ,emptyList())
+        listCollection.add(
+            ListItem(0,0,"Test", mutableListOf())
         )
         onList?.invoke(listCollection)
     }
