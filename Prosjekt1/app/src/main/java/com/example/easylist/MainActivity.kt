@@ -71,9 +71,6 @@ class MainActivity : AppCompatActivity(), AddNewList.OnFragmentAddNewListListene
         }
 
 
-       fun removeItem(index:Int){
-           val index = index
-           ListManager.instance.deleteItem(index)
-       }
+
 
     }

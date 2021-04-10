@@ -17,9 +17,7 @@ class ListManager {
         onList?.invoke(listCollection)
     }
     fun load(){
-        listCollection.add(
-            ListItem(0,0,"Test", mutableListOf())
-        )
+
         onList?.invoke(listCollection)
     }
 

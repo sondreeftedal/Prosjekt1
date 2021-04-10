@@ -24,7 +24,7 @@ class AddItemTasks : DialogFragment() {
         lateinit var addTaskName: EditText
         lateinit var submitTaskForm: Button
         lateinit var cancelTaskButton: Button
-        var index = 0
+
 
 
 
