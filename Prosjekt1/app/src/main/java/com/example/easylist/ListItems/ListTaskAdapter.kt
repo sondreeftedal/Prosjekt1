@@ -46,7 +46,7 @@ public class ListTaskAdapter(private var listItemTasks: MutableList<ListItemTask
             val taskPosition = position
             var check = isChecked
             if(taskPosition != RecyclerView.NO_POSITION){
-                ListTaskManager.Taskinstance.updateCheck(taskPosition, check,listTask.title)
+                ListTaskManager.Taskinstance.updateCheck(taskPosition, check,listTask.title,listTask.id)
                 ListTaskManager.Taskinstance.updateProgress()
 
 

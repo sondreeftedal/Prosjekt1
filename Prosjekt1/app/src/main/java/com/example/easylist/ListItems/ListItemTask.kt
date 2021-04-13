@@ -4,4 +4,4 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class ListItemTask(val itemId:Int, var title:String, var check:Boolean):Parcelable
+data class ListItemTask(val id:String,val listId:String, var title:String, var check:Boolean):Parcelable

@@ -14,6 +14,7 @@ import com.example.easylist.Lists.ListManager
 import com.example.easylist.R
 import com.example.easylist.listName
 import java.lang.RuntimeException
+import java.util.*
 
 
 class AddItemTasks : DialogFragment() {
@@ -87,7 +88,8 @@ class AddItemTasks : DialogFragment() {
 
                 var newTask = ListHolder.PickedListItem?.let {
                     ListItemTask(
-                        itemId = it.id,
+                        id = UUID.randomUUID().toString(),
+                        listId = it.id,
                         title = listName,
                         check = false
                     )
