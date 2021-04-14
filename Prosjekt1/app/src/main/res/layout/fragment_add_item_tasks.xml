@@ -41,8 +41,8 @@
 
         <Button
             android:id="@+id/addNewTaskEnterButton"
-            android:layout_width="100dp"
-            android:layout_height="60dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:backgroundTint="#339933"
             android:text="Fullfør"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -54,8 +54,8 @@
 
         <Button
             android:id="@+id/addNewTaskCancelButton"
-            android:layout_width="100dp"
-            android:layout_height="60dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:backgroundTint="#ff0000"
             android:text="Avbryt"
             android:textColor="@color/white"

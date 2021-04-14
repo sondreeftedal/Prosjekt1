@@ -42,28 +42,26 @@
 
         <Button
             android:id="@+id/addNewListEnterButton"
-            android:layout_width="100dp"
-            android:layout_height="60dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="68dp"
             android:backgroundTint="#339933"
             android:text="Fullfør"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/addNewListCancelButton"
-            app:layout_constraintHorizontal_bias="0.303"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/addNewListEditText"
-            app:layout_constraintVertical_bias="0.505" />
+            app:layout_constraintVertical_bias="0.506" />
 
         <Button
             android:id="@+id/addNewListCancelButton"
-            android:layout_width="100dp"
-            android:layout_height="60dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:backgroundTint="#ff0000"
             android:text="Avbryt"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.713"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/addNewListEnterButton"
             app:layout_constraintTop_toBottomOf="@+id/addNewListEditText"
             app:layout_constraintVertical_bias="0.505" />
 

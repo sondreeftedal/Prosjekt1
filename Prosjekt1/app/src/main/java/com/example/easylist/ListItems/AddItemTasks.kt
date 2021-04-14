@@ -41,7 +41,7 @@ class AddItemTasks : DialogFragment() {
             savedInstanceState: Bundle?
         ): View?
         {
-            var rootView: View = inflater.inflate(R.layout.fragment_add_item_tasks, container, false)
+            val rootView: View = inflater.inflate(R.layout.fragment_add_item_tasks, container, false)
 
             addTaskName = rootView.findViewById(R.id.addNewTaskEditText)
             submitTaskForm = rootView.findViewById(R.id.addNewTaskEnterButton)

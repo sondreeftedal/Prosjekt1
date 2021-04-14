@@ -27,13 +27,16 @@ class ListManager {
 
     fun deleteItem(index:Int){
         val listToRemove = listCollection[index]
+        listToRemove.tasks = mutableListOf()
         deleteListFromDb(listToRemove)
         listCollection.removeAt(index)
+
+
         onList?.invoke(listCollection)
     }
     fun load(){
-        //getListsFromDb()
-        onList?.invoke(listCollection)
+        getListsFromDb()
+
     }
 
     fun updateList(listItem: ListItem){
@@ -60,32 +63,41 @@ class ListManager {
         val ref = db.getReference()
         val userid= Firebase.auth.currentUser.uid
         ref.child(userid).child("Lists").child(list.id).removeValue()
-        ListTaskManager.Taskinstance.updateProgress()
+        //ListTaskManager.Taskinstance.updateProgress()
     }
-    /*fun getListsFromDb(){
-        val db = Firebase.database
+    fun getListsFromDb(){
+       val db = Firebase.database
         val ref = db.getReference()
-        ref.child(Firebase.auth.currentUser.uid).child("Lists").addValueEventListener(object :ValueEventListener{
+        ref.child(Firebase.auth.currentUser.uid).child("Lists").addListenerForSingleValueEvent(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
                     listCollection.clear()
-                    for(l in snapshot.children){
-                        val list = l.getValue(ListItem::class.java)
-                        if (list != null) {
-                            val listToAdd = ListItem(list.id,list.progress,list.text, mutableListOf())
-                            listCollection.add(listToAdd)
+                    val list = snapshot.children.forEach {
+                        val id = it.child("id").value.toString()
+                        val text = it.child("text").value.toString()
+                        val progress = it.child("progress").value.toString().toInt()
+                        val tasks = mutableListOf<ListItemTask>()
+
+                        it.child("tasks").children.forEach { c->
+                            val id = c.child("id").value.toString()
+                            val listId = c.child("listId").value.toString()
+                            val title = c.child("title").value.toString()
+                            val check = c.child("check").value.toString().toBoolean()
+                            tasks.add(ListItemTask(id,listId,title,check))
                         }
-                    }
+                        listCollection.add(ListItem(id,progress,text,tasks))
+                        onList?.invoke(listCollection)
+                        }  }
+
                 }
-            }
+
 
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
 
         })
-
-    }*/
+    }
 
 
 

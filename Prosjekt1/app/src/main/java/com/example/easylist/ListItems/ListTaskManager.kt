@@ -26,9 +26,11 @@ class ListTaskManager {
         if (itemToRemove != null) {
             removeTaskFromDb(itemToRemove)
         }
+        updateCheck(index,false,itemToRemove!!.title, itemToRemove.id)
         pickedList?.tasks?.removeAt(index)
         pickedList?.let { onTask?.invoke(it.tasks) }
-        updateProgress()
+
+
     }
     fun load(){
         var pickedList = ListHolder.PickedListItem
@@ -69,26 +71,26 @@ class ListTaskManager {
 
 
     fun updateProgress(){
-        var pickedList = ListHolder.PickedListItem
+        val pickedList = ListHolder.PickedListItem
         if(pickedList != null){
-        var taskList = pickedList?.tasks
-        var totalTasks = taskList!!.size
+        val taskList = pickedList.tasks
+        val totalTasks = taskList.size
         var checkedTasks = 0
-        pickedList?.tasks?.forEach {
-            if(it.check == true){
-                checkedTasks +=1
+            pickedList.tasks.forEach {
+                if(it.check == true){
+                    checkedTasks +=1
+                }
             }
-        }
         if(totalTasks != 0){
-            var progress =  checkedTasks * 100 /totalTasks
-            pickedList?.progress = progress
-
+            val progress =  checkedTasks * 100 /totalTasks
+            pickedList.progress = progress
+            updateProgressDb(pickedList.progress)
         }
         else{
-            pickedList?.progress = 0
+            pickedList.progress = 0
 
         }
-        updateProgressDb(pickedList!!.progress)
+
 
 
     }}
